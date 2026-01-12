@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio – Roman Orliange</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+        :root {
+            --bg: #F4F0ED;
+            --text-main: #1a1a1a;
+            --text-muted: #4a4a4a;
+            --brand-red: #B2301F;
+            --card-white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(244, 240, 237, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        nav {
+            max-width: 1200px; margin: auto; padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        nav .brand { font-weight: 700; color: var(--text-main); font-size: 1.1rem; }
+        nav ul { list-style: none; display: flex; gap: 15px; }
+        nav a { 
+            text-decoration: none; 
+            color: var(--text-main); 
+            font-size: 12px; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        nav a:hover { color: var(--brand-red); }
+
+        /* --- LAYOUT --- */
+        .container { max-width: 1100px; margin: auto; padding: 0 20px 60px; }
+
+        /* --- HERO (LANDING PAGE) --- */
+        .hero {
+            display: grid; 
+            grid-template-columns: 1.2fr .8fr; 
+            gap: 40px; 
+            align-items: center;
+            min-height: 100vh; /* Prend tout l'écran */
+            padding-top: 80px;
+        }
+        
+        h1 {
+            font-family: 'Abril Fatface', serif;
+            font-size: clamp(50px, 8vw, 100px);
+            line-height: 0.85;
+            color: var(--brand-red);
+            margin-bottom: 15px;
+        }
+        .shifted-text {
+            display: block;
+            font-size: 0.45em;
+            font-family: system-ui, sans-serif;
+            font-weight: 800;
+            color: #000;
+            margin-top: 10px;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            text-align: justify;
+            max-width: 60ch;
+            margin-top: 20px;
+        }
+        .hero img {
+            width: 100%; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        section { padding-top: 100px; scroll-margin-top: 50px; }
+        h2 { 
+            font-family: 'Abril Fatface', serif; 
+            font-size: 36px; 
+            margin-bottom: 30px; 
+            color: var(--brand-red); 
+        }
+
+        /* --- ABOUT STACK --- */
+        .about-stack { display: flex; flex-direction: column; gap: 30px; }
+        .card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .card h3 {
+            font-family: 'Abril Fatface', serif;
+            font-size: 1.8rem;
+            color: var(--brand-red);
+            margin-bottom: 25px;
+        }
+
+        /* --- INTERESTS GRID (2x2) --- */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .interest-item { text-align: center; }
+        .interest-item img {
+            width: 100%;
+            height: 500px; 
+            object-fit: cover; 
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+        .interest-item h4 { text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
+
+        /* --- SKILLS GRID --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        .skill-item {
+            background: #fdfdfd;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--brand-red);
+        }
+        .skill-item h4 { text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
+
+        /* --- MODALE SLIDER --- */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 9999;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--bg);
+            padding: 40px;
+            border-radius: 30px;
+            max-width: 1000px;
+            width: 90%;
+            position: relative;
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } }
+
+        .modal-image-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: #000;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        #modalImg {
+    width: 100%;
+    height: 100%;
+    /* On utilise contain au lieu de cover pour voir l'image entière */
+    object-fit: contain; 
+    /* On garde un fond noir pour boucher les trous si l'image est étroite */
+    background-color: #000; 
+    display: block;
+}
+
+        .nav-arrow {
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%);
+    background: none; /* Supprime le rond rouge */
+    color: #fff; 
+    border: none; 
+    width: 60px; 
+    height: 60px;
+    font-size: 50px; /* On agrandit un peu la flèche puisqu'il n'y a plus de rond */
+    cursor: pointer; 
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* On ajoute une ombre pour que la flèche soit visible même sur une image claire */
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+.nav-arrow:hover {
+    transform: translateY(-50%) scale(1.2);
+    color: var(--brand-red); /* La flèche devient rouge au survol */
+}
+        .arrow-left { left: 20px; }
+        .arrow-right { right: 20px; }
+        .close-modal {
+            position: absolute; top: 20px; right: 25px;
+            font-size: 40px; color: var(--brand-red); cursor: pointer; z-index: 100;
+        }
+
+        /* --- GRIDS CLASSIQUES --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+        @media (max-width: 900px) {
+            .hero, .interests-grid, .skills-grid { grid-template-columns: 1fr; }
+            .hero { text-align: center; }
+            .subtitle { margin: 20px auto; }
+            .interest-item img, .modal-image-container { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="brand">Roman Orliange</div>
+        <ul>
+            <li><a href="#profil">À propos</a></li>
+            <li><a href="#parcours">Formations & Expériences</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="container">
+    <section id="profil" style="padding-top: 0;">
+        <div class="hero">
+            <div>
+                <h1>PORTFOLIO<br><span class="shifted-text">BUT3 GEII FI ESE</span></h1>
+                <p class="subtitle">
+                    Bienvenue sur mon portfolio. Vous y trouverez une présentation de mon profil, de mon parcours de formation et de mes expériences, ainsi qu’une sélection de projets représentatifs de mon travail. Une rubrique de contact est également disponible pour toute prise de lien ou collaboration.
+                </p>
+            </div>
+            <div>
+                <img src="IMG_20251201_155337.jpg" alt="Roman Orliange" />
+            </div>
+        </div>
+
+        <h2>À propos de moi</h2>
+        <div class="about-stack">
+            <div class="card">
+                <h3>Centres d’intérêt</h3>
+                <div class="interests-grid">
+                    <div class="interest-item">
+                        <img src="IMG_20250905_095804.jpg" alt="Volleyball">
+                        <h4>Volleyball</h4>
+                        <p>Pratique en prénationale au SVBC à Sète.</p>
+                    </div>
+                    <div class="interest-item">
+                        <img src="IMG_20250606_092304.jpg" alt="Robotique">
+                        <h4>Robotique</h4>
+                        <p>Passionné par les systèmes embarqués spatiales et maritimes.</p>
+                    </div>
+                    <div class="interest-item">
+                        <img src="IMG_20250116_104426.jpg" alt="Dessin">
+                        <h4>Dessin & 3D</h4>
+                        <p>Modélisation sur Blender et SolidWorks.</p>
+                    </div>
+                    <div class="interest-item">
+                        <img src="IMG_20250603_173022.jpg" alt="CAO">
+                        <h4>CAO</h4>
+                        <p>Conception et impression de pièces mécaniques.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Compétences</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h4>Concevoir</h4>
+                        <p>Concevoir la partie GEII d’un système</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Vérifier</h4>
+                        <p>Vérifier la partie GEII d’un système</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Maintenir</h4>
+                        <p>Assurer le maintien en condition opérationnelle d'un système</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Implanter</h4>
+                        <p>Implanter un système matériel ou logiciel</p>
+                    </div>
+                </div>
+            </div>
+	<div class="card">
+                <div class="card">
+    	<h3>Langues et Certifications</h3>
+    	<p>
+        <strong>Anglais :</strong> Niveau du Cambridge B2<br>
+        <strong>Espagnol :</strong> Niveau A2<br>
+        <strong>Projet Voltaire :</strong> Score de 692 (Code : MCPY34P sur <a href="https://www.certificat-voltaire.fr" target="_blank" style="color:var(--brand-red);">www.certificat-voltaire.fr</a>)
+    	</p>
+	</div>
+
+            <div class="card">
+                <h3>Mon CV</h3>
+                <p>Consultez mon curriculum vitae :<br><br>
+                <a href="CV_Roman_Orliange (2).pdf" target="_blank" style="color:var(--brand-red); font-weight:700; text-decoration:underline;">Télécharger mon CV (PDF)</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="parcours">
+    <h2>Formations & Expériences</h2>
+    <div class="about-stack">
+        
+        <div class="card">
+            <h3>BUT Génie Électrique et Informatique Industrielle (GEII)</h3>
+            
+            <p style="margin-bottom: 20px; text-align: justify;">
+                Le BUT GEII est une formation pluritechnique qui forme des experts en électronique, automatisme et informatique industrielle. Elle allie théorie et projets concrets pour répondre aux besoins de l'industrie 4.0.
+            </p>
+
+            <div style="margin-bottom: 20px;">
+                <a href="spe617_annexe8_1426130.pdf" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: var(--brand-red); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.9rem;">
+                    Consulter la brochure de la formation
+                </a>
+            </div>
+
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 15px; border-left: 5px solid var(--brand-red);">
+                    <h4 style="margin-bottom: 10px;">Mon cursus par année</h4>
+                    <ul style="padding-left: 20px; font-size: 0.95rem;">
+                        <li><strong>BUT 1 :</strong> Acquisition des bases (Électronique, Énergie, Informatique).</li>
+                        <li><strong>BUT 2 :</strong> Spécialisation et premier stage technique.</li>
+                        <li><strong>BUT 3 :</strong> Approfondissement expert et préparation à l'insertion pro.</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 15px; border-left: 5px solid var(--brand-red);">
+                    <h4 style="margin-bottom: 10px;">Ma Spécialisation</h4>
+                    <p style="font-size: 0.95rem; text-align: justify;">
+    	Dès la 2ème année, j'ai choisi le parcours <strong>Électronique et Systèmes Embarqués (ESE)</strong>. 
+    	Ce choix me permet de me concentrer sur la conception de cartes électroniques et la programmation de microcontrôleurs (systèmes intelligents). 
+    	Je pourrais également me spécialiser plus tard dans la robotique.
+	</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px; padding: 20px; background: rgba(178, 48, 31, 0.05); border-radius: 15px;">
+                <h4 style="margin-bottom: 10px;">Pourquoi le GEII ?</h4>
+                <p style="font-size: 0.95rem; text-align: justify;">
+                    Passionné par la technologie et le fonctionnement des objets qui nous entourent, j'ai choisi le GEII pour sa polyvalence. C'est pour moi la voie idéale pour comprendre l'interaction entre le monde physique (capteurs, moteurs) et le monde numérique.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+    <h3>Expériences Professionnelles</h3>
+
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+        
+        <div style="background: #f9f9f9; padding: 25px; border-radius: 15px; border-top: 5px solid var(--brand-red); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h4 style="color: var(--brand-red); margin-bottom: 5px;">IneoSense — 2025</h4>
+                <p style="font-weight: 700; margin-bottom: 10px;">Stage BUT2 : 350h — Service production</p>
+                <p style="font-size: 0.95rem; margin-bottom: 15px;"><strong>Mission :</strong> Modification de cartes et produits électroniques.</p>
+                <p style="font-size: 0.9rem; text-align: justify; color: var(--text-muted); margin-bottom: 20px;">
+                    Je suis extrêmement reconnaissant pour cette opportunité au sein d'IneoSense. Ce stage m'a permis de plonger au cœur des problématiques de production industrielle. Je tiens à remercier toute l'équipe pour leur accueil et leur transmission de savoir-faire.
+                </p>
+            </div>
+            <a href="R_2024_S176107_E4501R.pdf" target="_blank" style="text-align: center; display: block; padding: 10px; border: 2px solid var(--brand-red); color: var(--brand-red); text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.85rem; transition: 0.3s;">
+                Feuilleter mon rapport de stage
+            </a>
+        </div>
+
+        <div style="background: #f9f9f9; padding: 25px; border-radius: 15px; border-top: 5px solid #2c3e50; display: flex; flex-direction: column;">
+            <h4 style="color: #2c3e50; margin-bottom: 5px;">CSUM (Centre Spatial Universitaire de Montpellier) — 2026</h4>
+            <p style="font-weight: 700; margin-bottom: 10px;">Stage BUT3 : 560h</p>
+            <p style="font-size: 0.95rem; margin-bottom: 15px;"><strong>Mission :</strong> Développement et intégration du driver d’une IMU (Inertial Measurement Unit) sur STM32.</p>
+            <p style="font-size: 0.9rem; text-align: justify; color: var(--text-muted);">
+                Ce stage à venir représente une étape majeure dans mon projet professionnel lié au secteur spatial. J'ai hâte de commencer cette mission technique stimulante et de contribuer aux projets innovants du CSUM.
+            </p>
+            <div style="margin-top: auto; padding-top: 20px;">
+                <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #7f8c8d; font-weight: 700;"> Début de mission prochainement</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</section>
+
+    <section id="projets">
+        <h2>Projets</h2>
+        <div class="grid">
+            <div class="card"><h3>Projet Robotique</h3><p>Conception d'un robot autonome.</p></div>
+            <div class="card"><h3>Système Embarqué</h3><p>Développement sous STM32.</p></div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="card" style="text-align: center;">
+            <p>Email : <a href="mailto:orliangeroman@gmail.com" style="color:var(--brand-red); font-weight:700;">orliangeroman@gmail.com</a></p>
+        </div>
+    </section>
+</main>
+
+<div id="skillModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-image-container">
+            <button class="nav-arrow arrow-left" id="prevBtn">❮</button>
+            <img id="modalImg" src="" alt="">
+            <button class="nav-arrow arrow-right" id="nextBtn">❯</button>
+        </div>
+        <h3 id="modalTitle" style="font-family:'Abril Fatface'; color:var(--brand-red); font-size:2.5rem; margin-bottom:15px;"></h3>
+        <p id="modalDesc" style="font-size:1.1rem; color:var(--text-muted); line-height:1.6;"></p>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById("skillModal");
+    const closeBtn = document.querySelector(".close-modal");
+    const imgElement = document.getElementById("modalImg");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let currentImages = [];
+    let currentIndex = 0;
+
+    const skillData = {
+        "CONCEVOIR": {
+            images: ["Capture d’écran 2026-01-12 222942.jpg", "IMG_20240614_221841_890.jpg", "Screenshot_2024-06-15-21-52-20-229_com.miui.gallery.jpg"],
+            desc: "En première année j'ai pu concevoir un robot suiveur de ligne, ainsi qu'apprendre le câblage domestique en cours de SAE, ces projets m'ont permis d'en apprendre plus sur la robotique ainsi que la conception de systèmes automatisés."
+        },
+        "VÉRIFIER": {
+            images: ["Capture d’écran 2026-01-12 223247.jpg", "Screenshot_2024-06-15-21-51-41-983_com.miui.gallery.jpg"],
+            desc: "En première année, nous avons pu réaliser un dé électronique, mais aussi le vérifier... En effet, une carte prémontée défaillante nous a été donné lors de l'examen pour réaliser des séries de tests pour trouver la source de la défaillance."
+        },
+        "MAINTENIR": {
+            images: ["Capture d’écran 2026-01-12 223624.jpg"],
+            desc: "Maintenance corrective et préventive de systèmes automatisés."
+        },
+        "IMPLANTER": {
+            images: ["Capture d’écran 2026-01-12 223524.jpg","RSP.jpg", "RSP2.gif"],
+            desc: "Installation, câblage et mise en service sur site industriel."
+        }
+    };
+
+   function updateImage() {
+    const currentSrc = currentImages[currentIndex];
+    imgElement.src = currentSrc;
+    
+    // Si c'est un GIF (souvent en portrait), on le montre en entier
+    // Sinon on remplit l'espace pour les photos classiques
+    if (currentSrc.toLowerCase().endsWith('.gif')) {
+        imgElement.style.objectFit = "contain";
+    } else {
+        imgElement.style.objectFit = "cover";
+    }
+
+    prevBtn.style.display = currentImages.length > 1 ? "block" : "none";
+    nextBtn.style.display = currentImages.length > 1 ? "block" : "none";
+}
+
+    document.querySelectorAll('.skill-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const title = this.querySelector('h4').innerText.toUpperCase();
+            const data = skillData[title];
+            if(data) {
+                document.getElementById("modalTitle").innerText = title;
+                document.getElementById("modalDesc").innerText = data.desc;
+                currentImages = data.images;
+                currentIndex = 0;
+                updateImage();
+                modal.classList.add("active");
+            }
+        });
+    });
+
+    nextBtn.onclick = (e) => { e.stopPropagation(); currentIndex = (currentIndex + 1) % currentImages.length; updateImage(); };
+    prevBtn.onclick = (e) => { e.stopPropagation(); currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length; updateImage(); };
+    closeBtn.onclick = () => modal.classList.remove("active");
+    window.onclick = (e) => { if(e.target == modal) modal.classList.remove("active"); };
+</script>
+
+</body>
+</html>
