@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.67" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio – Roman Orliange</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
@@ -14,7 +14,10 @@
             --brand-red: #B2301F;
             --card-white: #ffffff;
         }
-
+	html {
+    		font-size: 90%;
+    		zoom: 0.90;
+	}
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
@@ -260,7 +263,7 @@
             </div>
         </div>
 
-        <h2>À propos de moi</h2>
+        <h2 style="margin-top: 60px;">À propos de moi</h2>
         <div class="about-stack">
             <div class="card">
                 <h3>Centres d’intérêt</h3>
@@ -418,11 +421,13 @@
     </section>
 
     <section id="contact">
-        <h2>Contact</h2>
-        <div class="card" style="text-align: center;">
-            <p>Email : <a href="mailto:orliangeroman@gmail.com" style="color:var(--brand-red); font-weight:700;">orliangeroman@gmail.com</a></p>
-        </div>
-    </section>
+    <h2>Contact</h2>
+    <div class="card" style="text-align: center;">
+        <p>Email : <a href="mailto:orliangeroman@gmail.com" style="color:var(--brand-red); font-weight:700;">orliangeroman@gmail.com</a></p>
+        <p style="margin-top: 10px;">Téléphone : <a href="tel:+330769015440" style="color:var(--brand-red); font-weight:700;">+33 7 69 01 54 40</a></p>
+        <p style="margin-top: 10px;">LinkedIn : <a href="https://www.linkedin.com/in/roman-orliange" target="_blank" style="color:var(--brand-red); font-weight:700;">linkedin.com/in/roman-orliange</a></p>
+    </div>
+</section>
 </main>
 
 <div id="skillModal" class="modal">
