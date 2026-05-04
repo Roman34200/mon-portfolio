@@ -115,7 +115,7 @@
         }
 
         /* --- INTERESTS GRID (2x2) --- */
-        .interests-grid {
+.interests-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
@@ -123,7 +123,7 @@
         .interest-item { text-align: center; }
         .interest-item img {
             width: 100%;
-            height: 480px; 
+            height: 500px; 
             object-fit: cover; 
             border-radius: 15px;
             margin-bottom: 15px;
@@ -157,10 +157,11 @@
             z-index: 9999;
             left: 0; top: 0;
             width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.2);
             backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
+	    overflow: visible;
         }
         .modal.active { display: flex; }
         .modal-content {
@@ -171,27 +172,29 @@
             width: 90%;
             position: relative;
             animation: fadeIn 0.4s ease;
+	    overflow: visible;
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } }
 
-        .modal-image-container {
-            position: relative;
-            width: 100%;
-            height: 350px;
-            background: #000;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            overflow: hidden;
-        }
-        #modalImg {
-    width: 100%;
-    height: 100%;
-    /* On utilise contain au lieu de cover pour voir l'image entière */
-    object-fit: contain; 
-    /* On garde un fond noir pour boucher les trous si l'image est étroite */
-    background-color: #000; 
-    display: block;
-}
+	.modal-image-container {
+	    position: relative;
+       	    width: 100%;
+    	    background: #000;
+ 	    border-radius: 15px;
+	    margin-bottom: 25px;
+	    overflow: visible;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	}
+	#modalImg {
+ 	   width: 100%;
+    	   max-height: 500px;
+    	   object-fit: contain;
+    	   background-color: #000;
+   	   border-radius: 15px;
+    	   display: block;
+	}
 
         .nav-arrow {
     position: absolute; 
@@ -217,10 +220,10 @@
     transform: translateY(-50%) scale(1.2);
     color: var(--brand-red); /* La flèche devient rouge au survol */
 }
-        .arrow-left { left: 20px; }
-        .arrow-right { right: 20px; }
+        .arrow-left { left: -120px; }
+        .arrow-right { right: -120px; }
         .close-modal {
-            position: absolute; top: 20px; right: 25px;
+            position: absolute; top: -10px; right: 10px;
             font-size: 40px; color: var(--brand-red); cursor: pointer; z-index: 100;
         }
 
@@ -266,47 +269,55 @@
         <h2 style="margin-top: 60px;">À propos de moi</h2>
         <div class="about-stack">
             <div class="card">
-                <h3>Centres d’intérêt</h3>
-                <div class="interests-grid">
-                    <div class="interest-item">
-                        <img src="IMG_20250905_095804.jpg" alt="Volleyball">
-                        <h4>Volleyball</h4>
-                        <p>Pratique en prénationale au SVBC à Sète.</p>
-                    </div>
-                    <div class="interest-item">
-                        <img src="IMG_20250606_092304.jpg" alt="Robotique">
-                        <h4>Robotique</h4>
-                        <p>Passionné par les systèmes embarqués spatiales et maritimes.</p>
-                    </div>
-                    <div class="interest-item">
-                        <img src="IMG_20250116_104426.jpg" alt="Dessin">
-                        <h4>Dessin & 3D</h4>
-                        <p>Modélisation sur Blender et SolidWorks.</p>
-                    </div>
-                    <div class="interest-item">
-                        <img src="IMG_20250603_173022.jpg" alt="CAO">
-                        <h4>CAO</h4>
-                        <p>Conception et impression de pièces mécaniques.</p>
-                    </div>
-                </div>
-            </div>
+    <h3>Centres d'intérêt</h3>
+    <div class="interests-grid">
+        <div class="interest-item">
+                <a href="volleyball.html">
+        <img src="IMG_20250905_095804.jpg" alt="Volleyball">
+    </a>
+            <h4>Volleyball</h4>
+            <p>Pratique en prénationale au SVBC à Sète.</p>
+        </div>
+        <div class="interest-item">
+            <a href="robotique.html">
+    <img src="IMG_20250606_092304.jpg" alt="Robotique">
+</a>
+            <h4>Robotique</h4>
+            <p>Passionné par les systèmes embarqués spatiaux et maritimes.</p>
+        </div>
+        <div class="interest-item">
+            <a href="dessin.html">
+    <img src="IMG_20250116_104426.jpg" alt="Dessin">
+</a>
+            <h4>Dessin & 3D</h4>
+            <p>Modélisation sur Blender et SolidWorks.</p>
+        </div>
+        <div class="interest-item">
+            <a href="cao.html">
+    <img src="IMG_20250603_173022.jpg" alt="CAO">
+</a>
+            <h4>CAO</h4>
+            <p>Conception et impression de pièces mécaniques.</p>
+        </div>
+    </div>
+</div>
 
             <div class="card">
                 <h3>Compétences</h3>
                 <div class="skills-grid">
-                    <div class="skill-item">
-                        <h4>Concevoir</h4>
+<div class="skill-item" onclick="window.location.href='concevoir.html'" style="cursor:pointer;">
+    <h4>Concevoir</h4>
                         <p>Concevoir la partie GEII d’un système</p>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" onclick="window.location.href='verifier.html'" style="cursor:pointer;">
                         <h4>Vérifier</h4>
                         <p>Vérifier la partie GEII d’un système</p>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" onclick="window.location.href='maintenir.html'" style="cursor:pointer;">
                         <h4>Maintenir</h4>
                         <p>Assurer le maintien en condition opérationnelle d'un système</p>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" onclick="window.location.href='implanter.html'" style="cursor:pointer;">
                         <h4>Implanter</h4>
                         <p>Implanter un système matériel ou logiciel</p>
                     </div>
@@ -397,13 +408,15 @@
         <div style="background: #f9f9f9; padding: 25px; border-radius: 15px; border-top: 5px solid #2c3e50; display: flex; flex-direction: column;">
             <h4 style="color: #2c3e50; margin-bottom: 5px;">CSUM (Centre Spatial Universitaire de Montpellier) — 2026</h4>
             <p style="font-weight: 700; margin-bottom: 10px;">Stage BUT3 : 560h</p>
-            <p style="font-size: 0.95rem; margin-bottom: 15px;"><strong>Mission :</strong> Développement et intégration du driver d’une IMU (Inertial Measurement Unit) sur STM32.</p>
+            <p style="font-size: 0.95rem; margin-bottom: 15px;"><strong>Mission :</strong> Développement et intégration du driver d’une IMU sur STM32.</p>
             <p style="font-size: 0.9rem; text-align: justify; color: var(--text-muted);">
                 Ce stage à venir représente une étape majeure dans mon projet professionnel lié au secteur spatial. J'ai hâte de commencer cette mission technique stimulante et de contribuer aux projets innovants du CSUM.
             </p>
-            <div style="margin-top: auto; padding-top: 20px;">
-                <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #7f8c8d; font-weight: 700;"> Début de mission prochainement</span>
-            </div>
+<div style="margin-top: auto; padding-top: 20px;">
+    <a href="rapport_stage_CSUM.pdf" target="_blank" style="text-align: center; display: block; padding: 10px; border: 2px solid #2c3e50; color: #2c3e50; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.85rem; transition: 0.3s;">
+        Feuilleter mon rapport de stage
+    </a>
+</div>
         </div>
 
     </div>
@@ -421,11 +434,22 @@
     </section>
 
     <section id="contact">
-    <h2>Contact</h2>
-    <div class="card" style="text-align: center;">
-        <p>Email : <a href="mailto:orliangeroman@gmail.com" style="color:var(--brand-red); font-weight:700;">orliangeroman@gmail.com</a></p>
-        <p style="margin-top: 10px;">Téléphone : <a href="tel:+330769015440" style="color:var(--brand-red); font-weight:700;">+33 7 69 01 54 40</a></p>
-        <p style="margin-top: 10px;">LinkedIn : <a href="https://www.linkedin.com/in/roman-orliange" target="_blank" style="color:var(--brand-red); font-weight:700;">linkedin.com/in/roman-orliange</a></p>
+    <div class="card" style="text-align: center; padding: 60px 40px;">
+        <h2 style="font-size: 2.8rem; margin-bottom: 20px;">Travaillons ensemble</h2>
+        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 55ch; margin: 0 auto 40px;">
+            Je suis à la recherche d'un contrat d'apprentissage en ingénierie. N'hésitez pas à me contacter pour toute opportunité ou collaboration.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <a href="mailto:orliangeroman@gmail.com" style="display:flex; align-items:center; gap:8px; padding: 14px 28px; background: var(--brand-red); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.95rem;">
+                ✉ Email
+            </a>
+            <a href="https://www.linkedin.com/in/roman-orliange" target="_blank" style="display:flex; align-items:center; gap:8px; padding: 14px 28px; background: white; color: var(--text-main); text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.95rem; border: 1px solid rgba(0,0,0,0.1);">
+                in LinkedIn
+            </a>
+            <a href="tel:+330769015440" style="display:flex; align-items:center; gap:8px; padding: 14px 28px; background: white; color: var(--text-main); text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.95rem; border: 1px solid rgba(0,0,0,0.1);">
+                📞 Téléphone
+            </a>
+        </div>
     </div>
 </section>
 </main>

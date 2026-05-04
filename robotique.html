@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robotique – Roman Orliange</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;600&display=swap');
+
+        :root {
+            --bg: #F4F0ED;
+            --text-main: #1a1a1a;
+            --text-muted: #4a4a4a;
+            --brand-red: #B2301F;
+            --card-white: #ffffff;
+        }
+
+        html { font-size: 90%; zoom: 0.90; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        /* NAV */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(244, 240, 237, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        nav {
+            max-width: 1100px; margin: auto; padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        nav .brand { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--text-main); font-size: 1.1rem; }
+        nav a {
+            text-decoration: none; color: var(--text-main);
+            font-size: 0.85rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: var(--brand-red); }
+
+        /* HERO */
+        .hero {
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
+            z-index: 1;
+        }
+        .hero img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .hero-content {
+            position: relative; z-index: 2;
+            padding: 50px 60px;
+            color: white;
+        }
+        .hero-tag {
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
+            color: rgba(255,255,255,0.7); margin-bottom: 10px;
+        }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 7vw, 80px);
+            line-height: 1;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            max-width: 50ch;
+        }
+
+        /* CONTENU */
+        .container { max-width: 1100px; margin: auto; padding: 80px 20px; }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--brand-red);
+            margin-bottom: 20px;
+        }
+
+        p { color: var(--text-muted); margin-bottom: 15px; }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+        .stat-card .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--brand-red);
+            font-weight: 700;
+        }
+        .stat-card .label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 80px;
+        }
+        .photo-grid img {
+            width: 100%; height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        .photo-grid img:first-child {
+            grid-column: span 2;
+            height: 350px;
+        }
+
+        .quote-block {
+            background: white;
+            border-radius: 25px;
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .quote-block blockquote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.6rem;
+            color: var(--text-main);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .quote-block cite {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        /* RETOUR */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            background: var(--brand-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            font-family: 'Lora', serif;
+            transition: opacity 0.2s;
+        }
+        .back-btn:hover { opacity: 0.85; }
+
+        @media (max-width: 768px) {
+            .section-grid, .stat-grid, .photo-grid { grid-template-columns: 1fr; }
+            .photo-grid img:first-child { grid-column: span 1; height: 250px; }
+            .hero-content { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="brand">Roman Orliange</div>
+        <a href="index.html">← Retour au portfolio</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <img src="IMG_20250606_092304.jpg" alt="Robotique">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <p class="hero-tag">Centres d'intérêt</p>
+        <h1>Robotique</h1>
+        <p>Une passion qui forge la rigueur, l'esprit d'équipe et le dépassement de soi.</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="stat-grid">
+        <div class="stat-card">
+            <div class="number">3+</div>
+            <div class="label">Années de projets</div>
+        </div>
+        <div class="stat-card">
+            <div class="number">Embarqué</div>
+            <div class="label">Spécialité</div>
+        </div>
+        <div class="stat-card">
+            <div class="number">STM32</div>
+            <div class="label">Club à ESE</div>
+        </div>
+    </div>
+
+    <div class="section-grid">
+        <div>
+            <h2>Ma pratique</h2>
+            <p>Je pratique le robotique en compétition au STM32 (ESE Volley-Ball Club) à un niveau prénationale. Cette discipline exigeante m'a appris à travailler en équipe, à gérer la pression des matchs et à toujours chercher à progresser.</p>
+            <p>Le robotique est bien plus qu'un sport pour moi : c'est une école de vie. Les entraînements réguliers, les déplacements et les compétitions m'ont forgé une discipline et une capacité d'adaptation que je retrouve dans mes projets techniques.</p>
+            <p>Réceptionneur-attaquant de formation, j'ai développé une lecture rapide du jeu et une capacité à prendre des décisions sous pression — des qualités directement transférables dans mon travail d'ingénieur.</p>
+        </div>
+        <div>
+            <h2>Sport & Ingénierie</h2>
+            <p>La pratique sportive à haut niveau nourrit directement mon approche technique. La rigueur des entraînements, l'analyse des performances et l'amélioration continue sont des méthodes que j'applique aussi bien sur le terrain que dans mes projets embarqués.</p>
+            <p>Gérer un projet en équipe, respecter des délais, communiquer clairement sous pression : autant de compétences développées sur le terrain de robotique et réinvesties dans mes expériences professionnelles.</p>
+        </div>
+    </div>
+
+    <div class="photo-grid">
+        <img src="IMG_20250606_092304.jpg" alt="Match de robotique">
+        <img src="IMG_20250606_092304.jpg" alt="Entraînement">
+        <img src="IMG_20250606_092304.jpg" alt="Équipe">
+    </div>
+
+    <div class="quote-block">
+        <blockquote>"Le sport de haut niveau m'a appris que la progression vient de la répétition, de l'analyse et de la persévérance — exactement comme en ingénierie."</blockquote>
+        <cite>— Roman Orliange</cite>
+    </div>
+
+    <a href="javascript:history.back()" class="back-btn">← Retour au portfolio</a>
+
+</div>
+
+</body>
+</html>
