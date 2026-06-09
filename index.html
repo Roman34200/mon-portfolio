@@ -92,12 +92,18 @@
         }
 
         section { padding-top: 100px; scroll-margin-top: 50px; }
-        h2 { 
-            font-family: 'Abril Fatface', serif; 
-            font-size: 36px; 
-            margin-bottom: 30px; 
-            color: var(--brand-red); 
-        }
+h2 {
+    font-family: 'Abril Fatface', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.05;
+    color: var(--text-main);
+    margin-bottom: 30px;
+}
+h2::before {
+    content: '/';
+    color: var(--brand-red);
+    margin-right: 4px;
+}
 
         /* --- ABOUT STACK --- */
         .about-stack { display: flex; flex-direction: column; gap: 30px; }
@@ -236,6 +242,210 @@
             .subtitle { margin: 20px auto; }
             .interest-item img, .modal-image-container { height: 350px; }
         }
+
+        /* --- PROJETS SCROLL HORIZONTAL --- */
+        .projets-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+        .projets-title {
+            font-family: 'Abril Fatface', serif;
+            font-size: clamp(36px, 5vw, 64px);
+            line-height: 1.05;
+            color: var(--text-main);
+            margin-bottom: 0;
+        }
+        .projets-title .slash { color: var(--brand-red); }
+        .projets-counter {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding-bottom: 8px;
+        }
+        .projets-scroll-wrapper {
+            overflow: hidden;
+            cursor: grab;
+            user-select: none;
+        }
+        .projets-scroll-wrapper:active { cursor: grabbing; }
+        .projets-track {
+            display: flex;
+            gap: 24px;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .projet-card {
+            min-width: 420px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .projet-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+        }
+        .projet-card-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .projet-card-body { padding: 28px; }
+        .projet-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--brand-red);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .projet-card-body h3 {
+            font-family: 'Abril Fatface', serif;
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+        .projet-card-body p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+	#projets {
+	    min-height: 100vh;
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+	}
+        /* --- PROJETS STICKY SCROLL --- */
+        .projets-outer {
+            height: 400vh;
+            position: relative;
+        }
+        .projets-sticky {
+            position: sticky;
+            top: 60px;
+            height: calc(100vh - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--bg);
+        }
+        .projets-inner {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px 20px 0;
+        }
+        .projets-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+        .projets-title {
+            font-family: 'Abril Fatface', serif;
+            font-size: clamp(36px, 5vw, 64px);
+            line-height: 1.05;
+            color: var(--text-main);
+            margin-bottom: 0;
+        }
+        .projets-title .slash { color: var(--brand-red); }
+        .projets-progress-wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 8px;
+        }
+        .projets-progress-bar {
+            width: 160px;
+            height: 3px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .projets-progress-bar::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            background: var(--brand-red);
+            border-radius: 10px;
+            width: var(--progress, 25%);
+            transition: width 0.1s ease;
+        }
+        .projets-counter {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .projets-overflow {
+            overflow: hidden;
+        }
+        .projets-track {
+            display: flex;
+            gap: 24px;
+            will-change: transform;
+	    padding-left: calc(50vw - 210px);
+    	    padding-right: calc(50vw - 210px);
+        }
+        .projet-card {
+            min-width: 420px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .projet-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+        }
+        .projet-card-img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .projet-card-body { padding: 28px; }
+        .projet-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--brand-red);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .projet-card-body h3 {
+            font-family: 'Abril Fatface', serif;
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+        .projet-card-body p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -304,7 +514,7 @@
 
             <div class="card">
                 <h3>Compétences</h3>
-                <div class="skills-grid">
+                <div class="skills-grid" id="competences">
 <div class="skill-item" onclick="window.location.href='concevoir.html'" style="cursor:pointer;">
     <h4>Concevoir</h4>
                         <p>Concevoir la partie GEII d’un système</p>
@@ -425,14 +635,67 @@
     </div>
 </section>
 
-    <section id="projets">
-        <h2>Projets</h2>
-        <div class="grid">
-            <div class="card"><h3>Projet Robotique</h3><p>Conception d'un robot autonome.</p></div>
-            <div class="card"><h3>Système Embarqué</h3><p>Développement sous STM32.</p></div>
-        </div>
-    </section>
+    </div>
+</section>
+</main>
 
+<!-- PROJETS - sticky scroll section, hors du container -->
+<div class="projets-outer" id="projetsOuter">
+    <div class="projets-sticky">
+        <div class="projets-inner">
+            <div class="projets-header">
+                <h2 class="projets-title"><span class="slash"></span>projets qui<br>ont marqué.</h2>
+                <div class="projets-progress-wrap">
+                    <div class="projets-progress-bar" id="projetsBar"></div>
+                    <span class="projets-counter" id="projetsCounter">1 / 4</span>
+                </div>
+            </div>
+            <div class="projets-overflow">
+                <div class="projets-track" id="projetsTrack">
+
+                    <div class="projet-card" onclick="window.location.href='robot_sumo.html'" style="cursor:pointer;">
+                        <div class="projet-card-img img-placeholder" style="background:#e8e4e0;">Image</div>
+                        <div class="projet-card-body">
+                            <p class="projet-tag">Embarqué · STM32</p>
+                            <h3>/Robot Sumo</h3>
+                            <p>Robot autonome construit de A à Z — conception mécanique, électronique et programmation en C embarqué sur STM32.</p>
+                        </div>
+                    </div>
+
+                    <div class="projet-card">
+                        <div class="projet-card-img img-placeholder" style="background:#e0e4e8;">Image</div>
+                        <div class="projet-card-body">
+                            <p class="projet-tag">IoT · Microcontrôleur</p>
+                            <h3>/Plastron Taekwondo Connecté</h3>
+                            <p>Armure de taekwondo instrumentée avec capteurs et microcontrôleur pour détecter et comptabiliser les impacts en temps réel.</p>
+                        </div>
+                    </div>
+
+                    <div class="projet-card">
+                        <div class="projet-card-img img-placeholder" style="background:#e4e0e8;">Image</div>
+                        <div class="projet-card-body">
+                            <p class="projet-tag">Spatial · Driver IMU</p>
+                            <h3>/Driver IMU — CSUM</h3>
+                            <p>Développement d'un driver pour l'IMU ICM-42688-P sur STM32 en C++, dans le cadre du Centre Spatial Universitaire de Montpellier.</p>
+                        </div>
+                    </div>
+
+                    <div class="projet-card">
+                        <div class="projet-card-img img-placeholder" style="background:#e8e8e0;">Image</div>
+                        <div class="projet-card-body">
+                            <p class="projet-tag">Robotique · Capteurs</p>
+                            <h3>/Robot Suiveur de Ligne</h3>
+                            <p>Robot suiveur de ligne conçu en BUT1, intégrant capteurs infrarouges et logique de contrôle embarquée.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="container">
     <section id="contact">
     <div class="card" style="text-align: center; padding: 60px 40px;">
         <h2 style="font-size: 2.8rem; margin-bottom: 20px;">Travaillons ensemble</h2>
@@ -454,6 +717,39 @@
 </section>
 </main>
 
+<script>
+// PROJETS STICKY SCROLL
+const outer = document.getElementById('projetsOuter');
+const track = document.getElementById('projetsTrack');
+const counter = document.getElementById('projetsCounter');
+const bar = document.getElementById('projetsBar');
+const cards = document.querySelectorAll('.projet-card');
+const total = cards.length;
+
+function updateProgress(index) {
+    counter.textContent = `${index + 1} / ${total}`;
+    bar.style.setProperty('--progress', `${((index + 1) / total) * 100}%`);
+}
+
+function onScroll() {
+    const outerRect = outer.getBoundingClientRect();
+    const scrolled = -outerRect.top;
+    const scrollable = outer.offsetHeight - window.innerHeight;
+    const progress = Math.max(0, Math.min(1, scrolled / scrollable));
+
+    const cardWidth = cards[0].offsetWidth + 24;
+    const maxTranslate = total * cardWidth - 40;
+    const translateX = progress * maxTranslate;
+    track.style.transform = `translateX(-${translateX}px)`;
+
+    const cardIndex = Math.min(total - 1, Math.floor(progress * total));
+    updateProgress(cardIndex);
+}
+
+window.addEventListener('scroll', onScroll);
+updateProgress(0);
+</script>
+
 <div id="skillModal" class="modal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
@@ -466,72 +762,6 @@
         <p id="modalDesc" style="font-size:1.1rem; color:var(--text-muted); line-height:1.6;"></p>
     </div>
 </div>
-
-<script>
-    const modal = document.getElementById("skillModal");
-    const closeBtn = document.querySelector(".close-modal");
-    const imgElement = document.getElementById("modalImg");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-
-    let currentImages = [];
-    let currentIndex = 0;
-
-    const skillData = {
-        "CONCEVOIR": {
-            images: ["Capture d’écran 2026-01-12 222942.jpg", "IMG_20240614_221841_890.jpg", "Screenshot_2024-06-15-21-52-20-229_com.miui.gallery.jpg"],
-            desc: "En première année j'ai pu concevoir un robot suiveur de ligne, ainsi qu'apprendre le câblage domestique en cours de SAE, ces projets m'ont permis d'en apprendre plus sur la robotique ainsi que la conception de systèmes automatisés."
-        },
-        "VÉRIFIER": {
-            images: ["Capture d’écran 2026-01-12 223247.jpg", "Screenshot_2024-06-15-21-51-41-983_com.miui.gallery.jpg"],
-            desc: "En première année, nous avons pu réaliser un dé électronique, mais aussi le vérifier... En effet, une carte prémontée défaillante nous a été donné lors de l'examen pour réaliser des séries de tests pour trouver la source de la défaillance."
-        },
-        "MAINTENIR": {
-            images: ["Capture d’écran 2026-01-12 223624.jpg"],
-            desc: "Maintenance corrective et préventive de systèmes automatisés."
-        },
-        "IMPLANTER": {
-            images: ["Capture d’écran 2026-01-12 223524.jpg","RSP.jpg", "RSP2.gif"],
-            desc: "Installation, câblage et mise en service sur site industriel."
-        }
-    };
-
-   function updateImage() {
-    const currentSrc = currentImages[currentIndex];
-    imgElement.src = currentSrc;
-    
-    // Si c'est un GIF (souvent en portrait), on le montre en entier
-    // Sinon on remplit l'espace pour les photos classiques
-    if (currentSrc.toLowerCase().endsWith('.gif')) {
-        imgElement.style.objectFit = "contain";
-    } else {
-        imgElement.style.objectFit = "cover";
-    }
-
-    prevBtn.style.display = currentImages.length > 1 ? "block" : "none";
-    nextBtn.style.display = currentImages.length > 1 ? "block" : "none";
-}
-
-    document.querySelectorAll('.skill-item').forEach(item => {
-        item.addEventListener('click', function() {
-            const title = this.querySelector('h4').innerText.toUpperCase();
-            const data = skillData[title];
-            if(data) {
-                document.getElementById("modalTitle").innerText = title;
-                document.getElementById("modalDesc").innerText = data.desc;
-                currentImages = data.images;
-                currentIndex = 0;
-                updateImage();
-                modal.classList.add("active");
-            }
-        });
-    });
-
-    nextBtn.onclick = (e) => { e.stopPropagation(); currentIndex = (currentIndex + 1) % currentImages.length; updateImage(); };
-    prevBtn.onclick = (e) => { e.stopPropagation(); currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length; updateImage(); };
-    closeBtn.onclick = () => modal.classList.remove("active");
-    window.onclick = (e) => { if(e.target == modal) modal.classList.remove("active"); };
-</script>
 
 </body>
 </html>

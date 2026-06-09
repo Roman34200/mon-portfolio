@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robot Sumo – Roman Orliange</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;600&display=swap');
+        :root { --bg: #F4F0ED; --text-main: #1a1a1a; --text-muted: #4a4a4a; --brand-red: #B2301F; }
+        html { font-size: 90%; zoom: 0.90; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Lora', serif; background-color: var(--bg); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(244,240,237,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.08); }
+        nav { max-width: 1100px; margin: auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        nav .brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; }
+        nav a { text-decoration: none; color: var(--text-main); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s; }
+        nav a:hover { color: var(--brand-red); }
+
+        .hero-3d-outer { height: 300vh; position: relative; }
+        .hero-3d-sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        #canvas-container { position: absolute; inset: 0; z-index: 1; }
+        canvas { display: block; width: 100% !important; height: 100% !important; }
+
+        .info-left, .info-right { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; max-width: 260px; transition: opacity 0.5s, transform 0.5s; }
+        .info-left { left: 60px; }
+        .info-right { right: 60px; text-align: right; }
+        .info-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--brand-red); font-weight: 700; margin-bottom: 8px; }
+        .info-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; line-height: 1.2; color: var(--text-main); margin-bottom: 10px; }
+        .info-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
+        .hero-title { position: absolute; bottom: 60px; left: 60px; z-index: 2; }
+        .hero-title h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 6vw, 72px); line-height: 1; color: var(--text-main); }
+        .hero-title h1 .slash { color: var(--brand-red); }
+        .hero-title p { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-top: 8px; }
+
+        .scroll-hint { position: absolute; bottom: 60px; right: 60px; z-index: 2; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); display: flex; align-items: center; gap: 10px; }
+        .scroll-hint::before { content: ''; width: 40px; height: 1px; background: var(--text-muted); }
+
+        .container { max-width: 1100px; margin: auto; padding: 80px 20px; }
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 80px; }
+        .stat-card { background: white; border-radius: 20px; padding: 30px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+        .stat-card .number { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--brand-red); font-weight: 700; }
+        .stat-card .label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-top: 5px; }
+        .section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 80px; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); margin-bottom: 20px; }
+        p { color: var(--text-muted); margin-bottom: 15px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 25px; background: var(--brand-red); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.9rem; transition: opacity 0.2s; }
+        .back-btn:hover { opacity: 0.85; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="brand">Roman Orliange</div>
+        <a href="javascript:history.back()">← Retour au portfolio</a>
+    </nav>
+</header>
+
+<div class="hero-3d-outer" id="hero3dOuter">
+    <div class="hero-3d-sticky">
+        <div id="canvas-container"></div>
+        <div class="hero-title">
+            <h1><span class="slash">/</span>Robot Sumo</h1>
+            <p>Embarqué · STM32 · C</p>
+        </div>
+        <div class="info-left" id="infoLeft" style="opacity:0; transform:translateY(-50%) translateX(-30px);">
+            <p class="info-tag">Conception</p>
+            <p class="info-title">Mécanique & Électronique</p>
+            <p class="info-text">Châssis SolidWorks, pièces imprimées 3D. PCB routé sur KiCad avec gestion alimentation et capteurs.</p>
+        </div>
+        <div class="info-right" id="infoRight" style="opacity:0; transform:translateY(-50%) translateX(30px);">
+            <p class="info-tag">Programmation</p>
+            <p class="info-title">STM32 en C</p>
+            <p class="info-text">Firmware embarqué gérant capteurs de distance, capteurs de ligne et stratégie d'attaque en temps réel.</p>
+        </div>
+        <div class="scroll-hint">Scroll pour explorer</div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="stat-grid">
+        <div class="stat-card"><div class="number">3</div><div class="label">Mois de développement</div></div>
+        <div class="stat-card"><div class="number">STM32</div><div class="label">Microcontrôleur</div></div>
+        <div class="stat-card"><div class="number">C</div><div class="label">Langage embarqué</div></div>
+    </div>
+    <div class="section-grid">
+        <div>
+            <h2>Le projet</h2>
+            <p>Conception et réalisation complète d'un robot sumo autonome. SolidWorks pour la mécanique, STM32 en C pour l'embarqué — chaîne de développement complète.</p>
+            <p>Capteurs de distance pour détecter l'adversaire, capteurs de ligne pour rester dans l'arène, stratégie embarquée pour optimiser les attaques.</p>
+        </div>
+        <div>
+            <h2>Compétences mobilisées</h2>
+            <p>SolidWorks, impression 3D, KiCad, STM32 C — interruptions et timers.</p>
+            <p>Intégration complète : câblage, alimentation, tests, débogage.</p>
+        </div>
+    </div>
+    <a href="javascript:history.back()" class="back-btn">← Retour au portfolio</a>
+</div>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const container = document.getElementById('canvas-container');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xF4F0ED);
+
+const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+camera.position.set(0, 0.5, 7);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.shadowMap.enabled = true;
+container.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+const dir = new THREE.DirectionalLight(0xffffff, 2); dir.position.set(5,8,5); scene.add(dir);
+const fill = new THREE.DirectionalLight(0xffe8e0, 0.8); fill.position.set(-5,2,-3); scene.add(fill);
+const rim = new THREE.DirectionalLight(0xffffff, 0.5); rim.position.set(0,-3,-5); scene.add(rim);
+
+let robot = null;
+new GLTFLoader().load('robot.glb', (gltf) => {
+    robot = gltf.scene;
+    const box = new THREE.Box3().setFromObject(robot);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
+    const scale = 2.5 / Math.max(size.x, size.y, size.z);
+    robot.scale.setScalar(scale);
+    robot.position.sub(center.multiplyScalar(scale));
+    scene.add(robot);
+});
+
+const outer = document.getElementById('hero3dOuter');
+const infoLeft = document.getElementById('infoLeft');
+const infoRight = document.getElementById('infoRight');
+
+window.addEventListener('scroll', () => {
+    if (!robot) return;
+    const rect = outer.getBoundingClientRect();
+    const progress = Math.max(0, Math.min(1, -rect.top / (outer.offsetHeight - window.innerHeight)));
+    robot.rotation.y = progress * Math.PI * 2;
+    robot.rotation.x = Math.sin(progress * Math.PI) * 0.15;
+    const ip = Math.max(0, Math.min(1, (progress - 0.3) / 0.4));
+    infoLeft.style.opacity = ip;
+    infoLeft.style.transform = `translateY(-50%) translateX(${-30 + ip*30}px)`;
+    infoRight.style.opacity = ip;
+    infoRight.style.transform = `translateY(-50%) translateX(${30 - ip*30}px)`;
+});
+
+window.addEventListener('resize', () => {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+});
+
+(function animate() { requestAnimationFrame(animate); renderer.render(scene, camera); })();
+</script>
+</body>
+</html>
