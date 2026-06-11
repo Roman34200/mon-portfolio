@@ -16,7 +16,7 @@
         }
 	html {
     		font-size: 90%;
-    		zoom: 0.90;
+    		zoom: 0.99;
 	}
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
@@ -62,6 +62,7 @@
             align-items: center;
             min-height: 100vh; /* Prend tout l'écran */
             padding-top: 80px;
+            margin-top: -40px;
         }
         
         h1 {
@@ -135,6 +136,13 @@ h2::before {
             margin-bottom: 15px;
         }
         .interest-item h4 { text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
+        .interest-item a img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.interest-item a img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
 
         /* --- SKILLS GRID --- */
         .skills-grid {
@@ -456,7 +464,7 @@ h2::before {
         <ul>
             <li><a href="#profil">À propos</a></li>
             <li><a href="#parcours">Formations & Expériences</a></li>
-            <li><a href="#projets">Projets</a></li>
+            <li><a href="#projetsOuter">Projets</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -476,7 +484,7 @@ h2::before {
             </div>
         </div>
 
-        <h2 style="margin-top: 60px;">À propos de moi</h2>
+        <h2 style="margin-top: 140px;">À propos de moi</h2>
         <div class="about-stack">
             <div class="card">
     <h3>Centres d'intérêt</h3>
@@ -534,7 +542,7 @@ h2::before {
                 </div>
             </div>
 	<div class="card">
-                <div class="card">
+                <div class="card" style="font-size: 1.1rem;">
     	<h3>Langues et Certifications</h3>
     	<p>
         <strong>Anglais :</strong> Niveau du Cambridge B2<br>
@@ -543,10 +551,12 @@ h2::before {
     	</p>
 	</div>
 
-            <div class="card">
+            <div class="card" style="font-size: 1.1rem;">
                 <h3>Mon CV</h3>
                 <p>Consultez mon curriculum vitae :<br><br>
                 <a href="CV_Roman_Orliange (2).pdf" target="_blank" style="color:var(--brand-red); font-weight:700; text-decoration:underline;">Télécharger mon CV (PDF)</a></p>
+                <a href="CV_ORLIANGE_Roman_EN.pdf" target="_blank" style="color:var(--brand-red); font-weight:700; text-decoration:underline;">Download my CV in English (PDF)</a></p>
+                <a href="CV_ATS_ORLIANGE_Roman.pdf" target="_blank" style="color:var(--brand-red); font-weight:700; text-decoration:underline;">Télécharger mon CV ATS (PDF)</a>
             </div>
         </div>
     </section>
@@ -623,7 +633,7 @@ h2::before {
                 Ce stage à venir représente une étape majeure dans mon projet professionnel lié au secteur spatial. J'ai hâte de commencer cette mission technique stimulante et de contribuer aux projets innovants du CSUM.
             </p>
 <div style="margin-top: auto; padding-top: 20px;">
-    <a href="rapport_stage_CSUM.pdf" target="_blank" style="text-align: center; display: block; padding: 10px; border: 2px solid #2c3e50; color: #2c3e50; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.85rem; transition: 0.3s;">
+    <a href="CSUM_Rapport_Stage.pdf" target="_blank" style="text-align: center; display: block; padding: 10px; border: 2px solid #2c3e50; color: #2c3e50; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 0.85rem; transition: 0.3s;">
         Feuilleter mon rapport de stage
     </a>
 </div>
@@ -634,13 +644,10 @@ h2::before {
 
     </div>
 </section>
-
-    </div>
-</section>
 </main>
 
 <!-- PROJETS - sticky scroll section, hors du container -->
-<div class="projets-outer" id="projetsOuter">
+<div class="projets-outer" id="projetsOuter" style="scroll-margin-top: 60px;">
     <div class="projets-sticky">
         <div class="projets-inner">
             <div class="projets-header">
@@ -654,16 +661,16 @@ h2::before {
                 <div class="projets-track" id="projetsTrack">
 
                     <div class="projet-card" onclick="window.location.href='robot_sumo.html'" style="cursor:pointer;">
-                        <div class="projet-card-img img-placeholder" style="background:#e8e4e0;">Image</div>
+                        <img src="IMG_20250606_092304.jpg" class="projet-card-img" style="object-fit:cover;">
                         <div class="projet-card-body">
                             <p class="projet-tag">Embarqué · STM32</p>
-                            <h3>/Robot Sumo</h3>
+                            <h3>/Robot Sumo</h3> 
                             <p>Robot autonome construit de A à Z — conception mécanique, électronique et programmation en C embarqué sur STM32.</p>
                         </div>
                     </div>
 
                     <div class="projet-card">
-                        <div class="projet-card-img img-placeholder" style="background:#e0e4e8;">Image</div>
+                        <img src="Capture d’écran 2026-06-11 125903.jpg" class="projet-card-img" style="object-fit:cover;">
                         <div class="projet-card-body">
                             <p class="projet-tag">IoT · Microcontrôleur</p>
                             <h3>/Plastron Taekwondo Connecté</h3>
@@ -672,7 +679,7 @@ h2::before {
                     </div>
 
                     <div class="projet-card">
-                        <div class="projet-card-img img-placeholder" style="background:#e4e0e8;">Image</div>
+                        <img src="bureau.jpg" class="projet-card-img" style="object-fit:cover;">
                         <div class="projet-card-body">
                             <p class="projet-tag">Spatial · Driver IMU</p>
                             <h3>/Driver IMU — CSUM</h3>
@@ -681,7 +688,7 @@ h2::before {
                     </div>
 
                     <div class="projet-card">
-                        <div class="projet-card-img img-placeholder" style="background:#e8e8e0;">Image</div>
+                        <img src="igne.jpg" class="projet-card-img" style="object-fit:cover;">
                         <div class="projet-card-body">
                             <p class="projet-tag">Robotique · Capteurs</p>
                             <h3>/Robot Suiveur de Ligne</h3>
