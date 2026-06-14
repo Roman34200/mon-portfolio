@@ -138,12 +138,14 @@ const outer = document.getElementById('hero3dOuter');
 const infoLeft = document.getElementById('infoLeft');
 const infoRight = document.getElementById('infoRight');
 
+let targetRotation = 0;
+let currentRotation = 0;
+
 window.addEventListener('scroll', () => {
     if (!robot) return;
     const rect = outer.getBoundingClientRect();
     const progress = Math.max(0, Math.min(1, -rect.top / (outer.offsetHeight - window.innerHeight)));
-    robot.rotation.y = progress * Math.PI * 2;
-    robot.rotation.x = Math.sin(progress * Math.PI) * 0.15;
+    targetRotation = progress * Math.PI * 2;
     const ip = Math.max(0, Math.min(1, (progress - 0.3) / 0.4));
     infoLeft.style.opacity = ip;
     infoLeft.style.transform = `translateY(-50%) translateX(${-30 + ip*30}px)`;
@@ -157,7 +159,15 @@ window.addEventListener('resize', () => {
     renderer.setSize(container.clientWidth, container.clientHeight);
 });
 
-(function animate() { requestAnimationFrame(animate); renderer.render(scene, camera); })();
+(function animate() {
+    requestAnimationFrame(animate);
+    if (robot) {
+        currentRotation += (targetRotation - currentRotation) * 0.05;
+        robot.rotation.y = currentRotation;
+        robot.rotation.x = Math.sin(currentRotation) * 0.15;
+    }
+    renderer.render(scene, camera);
+})();
 </script>
 </body>
 </html>
