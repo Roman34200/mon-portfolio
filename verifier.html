@@ -260,38 +260,75 @@ grid-template-columns: 1fr 1fr 1fr;
 
     <section class="section" id="section1">
         <div class="section-header">
-            <h2>Projet 1</h2>
-            <p>Description du projet à venir.</p>
+            <h2>Projet Dé Electronique</h2>
         </div>
-<div style="display:flex; flex-direction:column; gap:12px; width:100%;">
-    <div style="display:grid; grid-template-columns: 1.6fr 1fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo haut gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo haut droite</div>
-    </div>
-    <div class="img-placeholder" style="min-height:400px;">Photo principale</div>
-    <div style="display:grid; grid-template-columns: 1fr 1.6fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo bas gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo bas droite</div>
+<div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:start; margin-bottom:40px;">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:start; margin-bottom:40px;">
+   <img src="de.jpg" style="width:100%; height:500px; border-radius:15px; object-fit:cover;">
+    <div style="font-size: 1.1rem;">
+        <p style="color:var(--text-muted); margin-bottom:25px;">Ce projet s'est déroulé en deux temps. Dans un premier temps, nous avons conçu et réalisé un dé électronique, un circuit intégrant des LEDs et une logique combinatoire pour simuler les faces d'un dé. Dans un second temps, nous avons reçu une carte électronique volontairement défectueuse et devions identifier l'erreur en appliquant un protocole de diagnostic appris en cours : lecture du schéma, mesures à l'oscilloscope et au multimètre, localisation de la panne.</p>
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+            <thead>
+                <tr style="background:var(--brand-red); color:white;">
+                    <th style="padding:12px 15px; text-align:left; border-radius:8px 8px 0 0;">Apprentissages Critiques</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background:white;">
+                    <td style="padding:12px 15px; border-bottom:1px solid #eee;"><strong>AC12.01</strong> — Appliquer une procédure d'essais</td>
+                </tr>
+                <tr style="background:#f9f9f9;">
+                    <td style="padding:12px 15px; border-bottom:1px solid #eee;"><strong>AC12.02</strong> — Identifier un dysfonctionnement</td>
+                </tr>
+                <tr style="background:white;">
+                    <td style="padding:12px 15px;"><strong>AC12.03</strong> — Décrire un dysfonctionnement</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+</div>
+
     </section>
 
     <section class="section" id="section2">
         <div class="section-header">
-            <h2>Projet 2</h2>
-            <p>Description du projet à venir.</p>
+            <h2>Projet tracker</h2>
         </div>
-<div style="display:flex; flex-direction:column; gap:12px; width:100%;">
-    <div style="display:grid; grid-template-columns: 1.6fr 1fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo haut gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo haut droite</div>
+<div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:start; margin-bottom:40px;">
+    <div style="position:relative; width:100%;">
+        <img id="sliderImgTracker" src="T1.jpg" style="width:100%; height:500px; border-radius:15px; object-fit:cover;">
+        <button onclick="changeSlideTracker(-1)" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.2rem; cursor:pointer;">❮</button>
+        <button onclick="changeSlideTracker(1)" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.2rem; cursor:pointer;">❯</button>
     </div>
-    <div class="img-placeholder" style="min-height:400px;">Photo principale</div>
-    <div style="display:grid; grid-template-columns: 1fr 1.6fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo bas gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo bas droite</div>
+    <div style="font-size: 1.1rem;">
+        <p style="color:var(--text-muted); margin-bottom:25px;">Ce projet consistait à tester un tracker motorisé capable de détecter et suivre automatiquement une cible placée devant lui. Le système oriente en temps réel son axe de rotation pour maintenir la cible dans son champ de vision. Nous avons appliqué une procédure d'essais pour valider le bon fonctionnement du suivi et identifier d'éventuels dysfonctionnements.</p>
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+            <thead>
+                <tr style="background:var(--brand-red); color:white;">
+                    <th style="padding:12px 15px; text-align:left; border-radius:8px 8px 0 0;">Apprentissages Critiques</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background:white;">
+                    <td style="padding:12px 15px; border-bottom:1px solid #eee;"><strong>AC11.02</strong> — Réaliser un prototype pour des solutions techniques matériel et/ou logiciel</td>
+                </tr>
+                <tr style="background:#f9f9f9;">
+                    <td style="padding:12px 15px;"><strong>AC12.01</strong> — Appliquer une procédure d'essais</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+
+<script>
+const sliderPhotosTracker = ['T1.jpg', 'T2.jpg'];
+let sliderIndexTracker = 0;
+function changeSlideTracker(dir) {
+    sliderIndexTracker = (sliderIndexTracker + dir + sliderPhotosTracker.length) % sliderPhotosTracker.length;
+    document.getElementById('sliderImgTracker').src = sliderPhotosTracker[sliderIndexTracker];
+}
+</script>
     </section>
 </main>
 
