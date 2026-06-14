@@ -252,44 +252,85 @@ grid-template-columns: 1fr 1fr 1fr;
 
 	<section class="section" id="section0">
     <div class="section-header">
-        <h2>Fiche descriptive</h2>
-        <p>Description à venir.</p>
+        <h2>Projets Implanter</h2>
     </div>
 <img src="Capture d’écran 2026-01-12 223441.jpg" alt="description" style="min-height:600px; width:100%; object-fit:cover; border-radius:10px;">
 </section>
 
     <section class="section" id="section1">
         <div class="section-header">
-            <h2>Projet 1</h2>
-            <p>Description du projet à venir.</p>
+            <h2>Projet Raspberry Pi</h2>
         </div>
-<div style="display:flex; flex-direction:column; gap:12px; width:100%;">
-    <div style="display:grid; grid-template-columns: 1.6fr 1fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo haut gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo haut droite</div>
+<div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:start; margin-bottom:40px;">
+    <div style="position:relative; width:100%;">
+        <img id="sliderImgRaspi" src="RSP.jpg" style="width:100%; height:500px; border-radius:15px; object-fit:contain; background:#f0ece8;">
+        <button onclick="changeSlideRaspi(-1)" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.2rem; cursor:pointer;">❮</button>
+        <button onclick="changeSlideRaspi(1)" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.2rem; cursor:pointer;">❯</button>
     </div>
-    <div class="img-placeholder" style="min-height:400px;">Photo principale</div>
-    <div style="display:grid; grid-template-columns: 1fr 1.6fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo bas gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo bas droite</div>
+    <div style="font-size: 1.1rem;">
+        <p style="color:var(--text-muted); margin-bottom:25px;">Ce projet consistait à implanter un système de caméra motorisée sur Raspberry Pi sous Linux. En bash, nous avons programmé deux servomoteurs permettant d'orienter la caméra sur deux axes. Un site HTML hébergé directement sur le Raspberry Pi servait d'interface de contrôle, depuis n'importe quel navigateur du réseau local, il était possible de piloter les servomoteurs et de visualiser le flux de la caméra en temps réel.</p>
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+            <thead>
+                <tr style="background:var(--brand-red); color:white;">
+                    <th style="padding:12px 15px; text-align:left; border-radius:8px 8px 0 0;">Apprentissages Critiques</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background:white;">
+                    <td style="padding:12px 15px; border-bottom:1px solid #eee;"><strong>AC24.01ESE</strong> — Appliquer une procédure de fabrication pour implanter les composants matériels et/ou logiciels</td>
+                </tr>
+                <tr style="background:#f9f9f9;">
+                    <td style="padding:12px 15px; border-bottom:1px solid #eee;"><strong>AC24.02ESE</strong> — Évaluer la conformité du système</td>
+                </tr>
+                <tr style="background:white;">
+                    <td style="padding:12px 15px;"><strong>AC34.02ESE</strong> — Exécuter la mise en service d'un système en respectant la procédure</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+
+<script>
+const sliderPhotosRaspi = ['RSP.jpg', 'RSP2.gif'];
+let sliderIndexRaspi = 0;
+function changeSlideRaspi(dir) {
+    sliderIndexRaspi = (sliderIndexRaspi + dir + sliderPhotosRaspi.length) % sliderPhotosRaspi.length;
+    document.getElementById('sliderImgRaspi').src = sliderPhotosRaspi[sliderIndexRaspi];
+}
+</script>
     </section>
 
     <section class="section" id="section2">
         <div class="section-header">
-            <h2>Projet 2</h2>
-            <p>Description du projet à venir.</p>
+            <h2>Projet Prototype d’un
+système de mesure de la qualité de l’air
+connecté
+</h2>
         </div>
-<div style="display:flex; flex-direction:column; gap:12px; width:100%;">
-    <div style="display:grid; grid-template-columns: 1.6fr 1fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo haut gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo haut droite</div>
-    </div>
-    <div class="img-placeholder" style="min-height:400px;">Photo principale</div>
-    <div style="display:grid; grid-template-columns: 1fr 1.6fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo bas gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo bas droite</div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:start; margin-bottom:40px;">
+    <img src="sae6schema.jpg" style="width:100%; height:500px; border-radius:15px; object-fit:cover;">
+    <div style="font-size: 1.1rem;">
+        <p style="color:var(--text-muted); margin-bottom:25px;">Dans le cadre de la SAÉ S5, nous avons développé un prototype de système de mesure de la qualité de l'air connecté. Ma partie consistait à concevoir entièrement le module « Capteur » : analyse fonctionnelle, choix et dimensionnement des composants, saisie du schéma sur KiCad, routage du PCB, fabrication et soudure des composants à la main, puis programmation du microcontrôleur STM32G030K8 en C.</p>
+
+<p style="color:var(--text-muted); margin-bottom:25px;">Le module intègre un capteur de gaz ENS160, un capteur de température AHT21 et un transceiver RF NRF24L01 pour la communication sans fil chiffrée avec le module Bridge. L'ensemble du système permettait de centraliser les mesures de plusieurs pièces dans une base de données SQLite, visualisable via un dashboard Grafana.</p>
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+            <thead>
+                <tr style="background:var(--brand-red); color:white;">
+                    <th style="padding:12px 15px; text-align:left; border-radius:8px 8px 0 0;">Apprentissages Critiques</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background:white;">
+                    <td style="padding:12px 15px; border-bottom:1px solid #eee;"><strong>AC24.01ESE</strong> — Appliquer une procédure de fabrication pour implanter les composants matériels et/ou logiciels</td>
+                </tr>
+                <tr style="background:#f9f9f9;">
+                    <td style="padding:12px 15px; border-bottom:1px solid #eee;"><strong>AC24.02ESE</strong> — Évaluer la conformité du système</td>
+                </tr>
+                <tr style="background:white;">
+                    <td style="padding:12px 15px;"><strong>AC34.01ESE</strong> — Produire une procédure d'installation et de mise en service d'un système</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
     </section>
