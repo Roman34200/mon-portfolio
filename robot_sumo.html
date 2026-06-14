@@ -25,8 +25,8 @@
         .info-left { left: 60px; }
         .info-right { right: 60px; text-align: right; }
         .info-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--brand-red); font-weight: 700; margin-bottom: 8px; }
-        .info-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; line-height: 1.2; color: var(--text-main); margin-bottom: 10px; }
-        .info-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+        .info-title { font-family: 'Playfair Display', serif; font-size: 2rem; line-height: 1.2; color: var(--text-main); margin-bottom: 10px; }
+        .info-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; }
 
         .hero-title { position: absolute; bottom: 60px; left: 60px; z-index: 2; }
         .hero-title h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 6vw, 72px); line-height: 1; color: var(--text-main); }
@@ -44,6 +44,61 @@
         .section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 80px; }
         h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); margin-bottom: 20px; }
         p { color: var(--text-muted); margin-bottom: 15px; }
+        <div style="margin-bottom: 80px;">
+    <h2>Les étapes du projet</h2>
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+
+        <div style="background: white; border-radius: 20px; padding: 25px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); font-weight: 700; min-width: 40px;">01</div>
+            <div>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Lecture du cahier des charges</p>
+                <p style="margin: 0; font-size: 0.9rem;">Analyse du règlement du TNRS.</p>
+                <a href="reglement_TNRS.pdf" target="_blank" style="display: inline-block; margin-top: 10px; padding: 6px 16px; background: var(--brand-red); color: white; text-decoration: none; border-radius: 50px; font-size: 0.8rem; font-weight: 700;">Voir le PDF</a>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 20px; padding: 25px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); font-weight: 700; min-width: 40px;">02</div>
+            <div>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Création du schéma électrique</p>
+                <p style="margin: 0; font-size: 0.9rem;">Conception du schéma sous KiCad.</p>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 20px; padding: 25px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); font-weight: 700; min-width: 40px;">03</div>
+            <div>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Création du PCB</p>
+                <p style="margin: 0; font-size: 0.9rem;">Routage et fabrication du circuit imprimé.</p>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 20px; padding: 25px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); font-weight: 700; min-width: 40px;">04</div>
+            <div>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Création du châssis 3D</p>
+                <p style="margin: 0; font-size: 0.9rem;">Phase 2D sur papier puis modélisation sur SolidWorks et impression 3D.</p>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 20px; padding: 25px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); font-weight: 700; min-width: 40px;">05</div>
+            <div>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Montage du robot</p>
+                <p style="margin: 0; font-size: 0.9rem;">Assemblage mécanique, câblage et intégration des composants.</p>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 20px; padding: 25px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); font-weight: 700; min-width: 40px;">06</div>
+            <div>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Programmation et Tests</p>
+                <p style="margin: 0; font-size: 0.9rem;">Développement du firmware STM32 en C et validation du comportement en arène.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
         .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 25px; background: var(--brand-red); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.9rem; transition: opacity 0.2s; }
         .back-btn:hover { opacity: 0.85; }
     </style>
@@ -66,7 +121,7 @@
         </div>
         <div class="info-left" id="infoLeft" style="opacity:0; transform:translateY(-50%) translateX(-30px);">
             <p class="info-tag">Conception</p>
-            <p class="info-title">Mécanique & Électronique</p>
+            <p class="info-title">Mécanique et Électronique</p>
             <p class="info-text">Châssis SolidWorks, pièces imprimées 3D. PCB routé sur KiCad avec gestion alimentation et capteurs.</p>
         </div>
         <div class="info-right" id="infoRight" style="opacity:0; transform:translateY(-50%) translateX(30px);">
