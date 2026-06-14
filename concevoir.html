@@ -252,44 +252,81 @@ grid-template-columns: 1fr 1fr 1fr;
 
 	<section class="section" id="section0">
     <div class="section-header">
-        <h2>Fiche descriptive</h2>
-        <p>Description à venir.</p>
+        <h2>Projets Concevoir</h2>
     </div>
 <img src="Capture d’écran 2026-01-12 222942.jpg" alt="description" style="min-height:600px; width:100%; object-fit:cover; border-radius:10px;">
 </section>
 
     <section class="section" id="section1">
         <div class="section-header">
-            <h2>Projet 1</h2>
-            <p>Description du projet à venir.</p>
+            <h2>Projet Câblage domestique</h2>
         </div>
-<div style="display:flex; flex-direction:column; gap:12px; width:100%;">
-    <div style="display:grid; grid-template-columns: 1.6fr 1fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo haut gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo haut droite</div>
-    </div>
-    <div class="img-placeholder" style="min-height:400px;">Photo principale</div>
-    <div style="display:grid; grid-template-columns: 1fr 1.6fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo bas gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo bas droite</div>
+<div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:start; margin-bottom:40px; font-size: 1.2rem;">
+    <img src="Screenshot_2026-06-09-12-05-06-094_com.miui.gallery.jpg" alt="Câblage domestique" style="width:100%; height:1000px; border-radius:15px; object-fit:cover;">
+    <div>
+        <p style="color:var(--text-muted); margin-bottom:25px;">Dans le cadre de ma première année de BUT GEII, j'ai réalisé un projet de câblage domestique en salle de travaux pratiques. L'objectif était de concevoir et câbler un tableau électrique fonctionnel intégrant des disjoncteurs, des prises, des interrupteurs et un éclairage, en respectant les normes NF C 15-100.</p>
+    <p style="color:var(--text-muted); margin-bottom:25px;">Ce projet m'a permis de comprendre la logique de distribution électrique dans un bâtiment, depuis l'arrivée du réseau jusqu'aux points d'utilisation, et d'appliquer rigoureusement des procédures de sécurité électrique. La lecture de schémas électriques, le choix des sections de câbles et le test de bon fonctionnement du tableau ont été au cœur de cette réalisation.</p>
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+            <thead>
+                <tr style="background:var(--brand-red); color:white;">
+                    <th style="padding:12px 15px; text-align:left; border-radius:8px 8px 0 0;">Apprentissages Critiques</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background:white;">
+                    <td style="padding:12px 15px; border-bottom:1px solid #eee;"><strong>AC11.01</strong> — Produire une analyse fonctionnelle d'un système simple</td>
+                </tr>
+                <tr style="background:#f9f9f9;">
+                    <td style="padding:12px 15px; border-bottom:1px solid #eee;"><strong>AC11.02</strong> — Réaliser un prototype pour des solutions techniques matériel et/ou logiciel</td>
+                </tr>
+                <tr style="background:white;">
+                    <td style="padding:12px 15px;"><strong>AC12.01</strong> — Appliquer une procédure d'essais</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
     </section>
 
     <section class="section" id="section2">
         <div class="section-header">
-            <h2>Projet 2</h2>
-            <p>Description du projet à venir.</p>
+            <h2>Projet Robot suiveur de ligne</h2>
         </div>
-<div style="display:flex; flex-direction:column; gap:12px; width:100%;">
-    <div style="display:grid; grid-template-columns: 1.6fr 1fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo haut gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo haut droite</div>
-    </div>
-    <div class="img-placeholder" style="min-height:400px;">Photo principale</div>
-    <div style="display:grid; grid-template-columns: 1fr 1.6fr; gap:12px;">
-        <div class="img-placeholder" style="min-height:220px;">Photo bas gauche</div>
-        <div class="img-placeholder" style="min-height:220px;">Photo bas droite</div>
+<div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:start; margin-bottom:40px;">
+    <div style="position:relative; width:100%;">
+    <img id="sliderImg" src="Screenshot_2026-06-09-12-05-15-813_com.miui.gallery.jpg" style="width:100%; height:400px; border-radius:15px; object-fit:cover;">
+    <button onclick="changeSlide(-1)" style="position:absolute; left:10px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.2rem; cursor:pointer;">❮</button>
+    <button onclick="changeSlide(1)" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.4); color:white; border:none; border-radius:50%; width:40px; height:40px; font-size:1.2rem; cursor:pointer;">❯</button>
+</div>
+
+<script>
+const sliderPhotos = ['Screenshot_2026-06-09-12-05-46-071_com.miui.gallery.jpg', 'Screenshot_2026-06-09-12-05-49-942_com.miui.gallery.jpg', 'Screenshot_2026-06-09-12-05-15-813_com.miui.gallery.jpg'];
+let sliderIndex = 0;
+function changeSlide(dir) {
+    sliderIndex = (sliderIndex + dir + sliderPhotos.length) % sliderPhotos.length;
+    document.getElementById('sliderImg').src = sliderPhotos[sliderIndex];
+}
+</script>
+    <div style="font-size: 1.1rem;">
+        <p style="color:var(--text-muted); margin-bottom:25px;">Réalisé en première année de BUT GEII, ce robot suiveur de ligne détecte et suit automatiquement une ligne blanche au sol. Il repose sur des capteurs à transistors optiques : chaque capteur émet de la lumière infrarouge et mesure la réflexion, le blanc réfléchit davantage que le reste, permettant au robot de détecter la ligne et d'ajuster sa trajectoire en temps réel.</p>
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+            <thead>
+                <tr style="background:var(--brand-red); color:white;">
+                    <th style="padding:12px 15px; text-align:left; border-radius:8px 8px 0 0;">Apprentissages Critiques</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background:white;">
+                    <td style="padding:12px 15px; border-bottom:1px solid #eee;"><strong>AC11.01</strong> — Produire une analyse fonctionnelle d'un système simple</td>
+                </tr>
+                <tr style="background:#f9f9f9;">
+                    <td style="padding:12px 15px; border-bottom:1px solid #eee;"><strong>AC11.02</strong> — Réaliser un prototype pour des solutions techniques matériel et/ou logiciel</td>
+                </tr>
+                <tr style="background:white;">
+                    <td style="padding:12px 15px;"><strong>AC11.03</strong> — Rédiger un dossier de fabrication</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
     </section>
