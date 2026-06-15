@@ -226,10 +226,12 @@ window.addEventListener('resize', () => {
     }
     renderer.render(scene, camera);
 })();
-
+</script>
+<script>
 function toggleGallery(id) {
     const gallery = document.getElementById(id);
-    const btn = document.getElementById('btn' + id.slice(-2));
+    const num = id.slice(-2);
+    const btn = document.getElementById('btn' + num);
     const isOpen = gallery.style.display === 'grid';
     gallery.style.display = isOpen ? 'none' : 'grid';
     btn.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
