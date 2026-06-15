@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plastron Taekwondo – Roman Orliange</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:wght@400;600&display=swap');
+        :root { --bg: #F4F0ED; --text-main: #1a1a1a; --text-muted: #4a4a4a; --brand-red: #B2301F; }
+        html { font-size: 90%; zoom: 0.90; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Lora', serif; background-color: var(--bg); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(244,240,237,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.08); }
+        nav { max-width: 1100px; margin: auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        nav .brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; }
+        nav a { text-decoration: none; color: var(--text-main); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.2s; }
+        nav a:hover { color: var(--brand-red); }
+
+        /* HERO */
+        .hero {
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            margin-top: 60px;
+        }
+        .hero-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6)); z-index: 1; }
+        .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .hero-content { position: relative; z-index: 2; padding: 50px 60px; color: white; }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 6vw, 72px); line-height: 1; color: white; margin-bottom: 10px; }
+        .hero-content h1 .slash { color: var(--brand-red); }
+        .hero-content p { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.7); margin-top: 8px; }
+
+        .container { max-width: 1100px; margin: auto; padding: 80px 20px; }
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 80px; }
+        .stat-card { background: white; border-radius: 20px; padding: 30px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+        .stat-card .number { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--brand-red); font-weight: 700; }
+        .stat-card .label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-top: 5px; }
+        .section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 80px; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); margin-bottom: 20px; }
+        p { color: var(--text-muted); margin-bottom: 15px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 25px; background: var(--brand-red); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.9rem; transition: opacity 0.2s; }
+        .back-btn:hover { opacity: 0.85; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="brand">Roman Orliange</div>
+        <a href="javascript:history.back()">← Retour au portfolio</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <img src="taek2.jpg" alt="Plastron Taekwondo">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <h1><span class="slash">/</span>Plastron Taekwondo Connecté</h1>
+        <p>IoT · STM32 · C · BLE</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="stat-grid">
+        <div class="stat-card"><div class="number">IoT</div><div class="label">Type de projet</div></div>
+        <div class="stat-card"><div class="number">STM32</div><div class="label">Microcontrôleur</div></div>
+        <div class="stat-card"><div class="number">BLE</div><div class="label">Communication</div></div>
+    </div>
+
+    <div class="section-grid">
+        <div>
+            <h2>Le projet</h2>
+            <p>Conception d'un plastron de taekwondo connecté intégrant des capteurs d'impact pour détecter, mesurer et transmettre en temps réel les touches portées pendant un combat.</p>
+            <p>Les données sont traitées par un microcontrôleur STM32 embarqué dans le plastron et transmises sans fil via Bluetooth Low Energy.</p>
+            <p>Ce projet combine sport et technologie pour résoudre un vrai problème de terrain.</p>
+        </div>
+        <div>
+            <h2>Compétences mobilisées</h2>
+            <p>Conception PCB sur KiCad, intégration capteurs piézoélectriques, firmware STM32 en C, communication BLE.</p>
+            <p>Intégration système complète : câblage, alimentation, tests, débogage.</p>
+        </div>
+    </div>
+
+<div style="margin-bottom: 80px; margin-top: 80px;">
+    <h2>Les étapes du projet</h2>
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+
+        <div style="background: white; border-radius: 20px; padding: 25px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); font-weight: 700; min-width: 40px;">01</div>
+            <div>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Création du cahier des charges</p>
+                <p style="margin: 0; font-size: 0.9rem;">Définition des besoins fonctionnels et techniques du plastron connecté.</p>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 20px; padding: 25px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); font-weight: 700; min-width: 40px;">02</div>
+            <div>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Création du schéma électrique</p>
+                <p style="margin: 0; font-size: 0.9rem;">Conception du schéma sous KiCad intégrant STM32, capteurs piézoélectriques et module BLE.</p>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 20px; padding: 25px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); font-weight: 700; min-width: 40px;">03</div>
+            <div>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Dimensionnement des composants</p>
+                <p style="margin: 0; font-size: 0.9rem;">Choix et calcul des composants selon les contraintes d'alimentation, de consommation et de détection d'impact.</p>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 20px; padding: 25px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); font-weight: 700; min-width: 40px;">04</div>
+            <div>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Création du PCB</p>
+                <p style="margin: 0; font-size: 0.9rem;">Routage du circuit imprimé sur KiCad et fabrication de la carte.</p>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 20px; padding: 25px 30px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+            <div style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand-red); font-weight: 700; min-width: 40px;">05</div>
+            <div>
+                <p style="font-weight: 700; color: var(--text-main); margin-bottom: 5px;">Tests</p>
+                <p style="margin: 0; font-size: 0.9rem;">Validation du fonctionnement électrique, tests de détection d'impact et vérification de la communication BLE.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <a href="javascript:history.back()" class="back-btn">← Retour au portfolio</a>
+</div>
+
+<script>
+function toggleGallery(id) {
+    const gallery = document.getElementById(id);
+    const num = id.slice(-2);
+    const btn = document.getElementById('btn' + num);
+    const isOpen = gallery.style.display === 'grid';
+    gallery.style.display = isOpen ? 'none' : 'grid';
+    btn.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+}
+</script>
+
+</body>
+</html>
